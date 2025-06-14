@@ -1,0 +1,12 @@
+import function
+# 3rd party lib
+import FreeSimpleGUI as gui
+
+label=gui.Text("Type in a to-do")
+input_box = gui.InputText(tooltip = "Enter to-do")
+add_button = gui.Button("Add")
+
+#create a window and button
+window = gui.Window('My To-Do App', layout=[[label], [input_box,add_button]])
+window.read()
+window.close()
