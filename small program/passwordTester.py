@@ -27,3 +27,4 @@ if all(result.values()):
 else:
     print('Weak Password')
     
+    
