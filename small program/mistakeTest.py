@@ -1,4 +1,4 @@
-
+#
 
 try:    
     width : int =input("Enter rectangle width: ")

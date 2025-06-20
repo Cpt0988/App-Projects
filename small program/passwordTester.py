@@ -1,3 +1,5 @@
+#
+
 password = input('Enter new password: ')
 result = {}
 
