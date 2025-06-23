@@ -8,10 +8,16 @@ add_button = gui.Button("Add")
 list_box = gui.Listbox(values= function.get_todos(), key='todos',
                        enable_events=True, size=[45,10])
 edit_button = gui.Button("Edit")
+complete_button = gui.Button("Complete")
+exit_button = gui.Button("Exit")
 
 #create a window and button
 window = gui.Window('My To-Do App', 
-                    layout=[[label], [input_box,add_button],[list_box, edit_button]], 
+                    layout=[[label], 
+                            [input_box,add_button],
+                            [list_box, edit_button,complete_button],
+                            [exit_button]
+                            ], 
                     font=('Helvetica',15))
 
 while True:
@@ -40,15 +46,23 @@ while True:
             function.write_todos(todos)
             window['todos'].update(values=todos)
         
+        case "Complete":
+            todo_complete = values['todos'][0]
+            todos = function.get_todos()
+            todos.remove(todo_complete)
+            function.write_todos(todos)
+            window['todos'].update(values=todos)
+            window['todo'].update(value='')
+        
+        case "Exit":
+            break
+            
         case "todos":
-            window['todos'].Update(value= values['todos'][0])
+            window['todo'].Update(value= values['todos'][0])
             
         # error of none that can kill your program
         case gui.WIN_CLOSED:
             break
-    
-    
-    
-    
-    
+            
+        
 window.close()
