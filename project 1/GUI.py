@@ -1,7 +1,9 @@
 import function
 # 3rd party lib
 import FreeSimpleGUI as gui
-
+import time
+gui.theme('Black')
+clock = gui.Text('', key = 'clock')
 label=gui.Text("Type in a to-do")
 input_box = gui.InputText(tooltip = "Enter to-do", key="todo")
 add_button = gui.Button("Add")
@@ -13,7 +15,8 @@ exit_button = gui.Button("Exit")
 
 #create a window and button
 window = gui.Window('My To-Do App', 
-                    layout=[[label], 
+                    layout=[[clock],
+                            [label], 
                             [input_box,add_button],
                             [list_box, edit_button,complete_button],
                             [exit_button]
@@ -22,9 +25,10 @@ window = gui.Window('My To-Do App',
 
 while True:
     # show the action of the add button and position
-    event,values = window.read()
-    print(event)
-    print(values)
+    event,values = window.read(timeout=10)
+    window["clock"].update(value= time.strftime("%b %d,%H:%M:%S"))
+    #print(event)
+    #print(values)
     #print(values['todos'])
     
     match event:
@@ -37,22 +41,28 @@ while True:
         
         
         case "Edit":
-            todo_to_edit = values['todos'][0]
-            new_todo = values['todo']
-           
-            todos = function.get_todos()
-            index= todos.index(todo_to_edit)
-            todos[index]= new_todo
-            function.write_todos(todos)
-            window['todos'].update(values=todos)
-        
+            try:
+                todo_to_edit = values['todos'][0]
+                new_todo = values['todo']
+            
+                todos = function.get_todos()
+                index= todos.index(todo_to_edit)
+                todos[index]= new_todo
+                function.write_todos(todos)
+                window['todos'].update(values=todos)
+            except IndexError:
+                gui.popup("Please select a item first.", font=('Helvetica',15))
+                
         case "Complete":
-            todo_complete = values['todos'][0]
-            todos = function.get_todos()
-            todos.remove(todo_complete)
-            function.write_todos(todos)
-            window['todos'].update(values=todos)
-            window['todo'].update(value='')
+            try:
+                todo_complete = values['todos'][0]
+                todos = function.get_todos()
+                todos.remove(todo_complete)
+                function.write_todos(todos)
+                window['todos'].update(values=todos)
+                window['todo'].update(value='')
+            except IndexError:
+                gui.popup("Please select a item first.", font=('Helvetica',15))
         
         case "Exit":
             break
