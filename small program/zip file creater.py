@@ -5,7 +5,7 @@ from zip_function import make_archive
 # files to compress
 label = gui.Text("Select files to compress:")
 input1= gui.Input()
-choose_button1 = gui.FileBrowse("Choose", key='files')
+choose_button1 = gui.FilesBrowse("Choose", key='files')
 
 #folder to save file
 label2 = gui.Text("Select folder save to:")
@@ -18,23 +18,31 @@ input3= gui.Input(key='nam')
 
 
 compress_button =gui.Button("Compress")
+exit_button = gui.Button("Exit")
 output_label = gui.Text(key="output")
 
 window = gui.Window("File Compressor",layout=[[label, input1, choose_button1],
                                               [label2, input2, choose_button2],
                                               [label3,input3],
-                                              [compress_button,output_label]])
+                                              [compress_button,exit_button,output_label]])
 
 while True:
     event,values = window.read()
     #print(event,values)
+    
+    match event:
+        case"Exit":
+            break
+        case gui.WIN_CLOSED:
+            break
+    
     filepaths= values['files'].split(';')
     folder = values["folder"]
     nam1 = values['nam']+".zip"
     make_archive(filepaths, folder,nam1)
     window["output"].update(value="Completed")
-    gui.WIN_CLOSED
+    #gui.WIN_CLOSED
     
     
-window.read()
+#window.read()
 window.close()
