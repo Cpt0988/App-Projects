@@ -2,7 +2,18 @@ import function
 # 3rd party lib
 import FreeSimpleGUI as gui
 import time
+import os
+
+
+if not os.path.exists("todos.txt"):
+    with open("todos.txt", "w") as file:
+        pass
+        
+
+
 gui.theme('Black')
+
+
 clock = gui.Text('', key = 'clock')
 label=gui.Text("Type in a to-do")
 input_box = gui.InputText(tooltip = "Enter to-do", key="todo")
