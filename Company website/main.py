@@ -17,18 +17,18 @@ df = pandas.read_csv("data.csv", sep=",")
 
 with col2:
     for index, rows in df[:4].iterrows():
-        st.header(f"{rows['first name']} {rows['last name']}")
+        st.subheader(f"{rows['first name'].title()} {rows['last name'].title()}")
         st.write(rows["role"])
         st.image("images/"+rows["image"])
         
 with col3:
-    for index, rows in df[5:9].iterrows():
-        st.header(f"{rows['first name']} {rows['last name']}")
+    for index, rows in df[4:8].iterrows():
+        st.subheader(f"{rows['first name'].title()} {rows['last name'].title()}")
         st.write(rows["role"])
         st.image("images/"+rows["image"])
         
 with col4:
-    for index, rows in df[10:].iterrows():
-        st.header(f"{rows['first name']} {rows['last name']}")
+    for index, rows in df[8:].iterrows():
+        st.subheader(f"{rows['first name'].title()} {rows['last name'].title()}")
         st.write(rows["role"])
         st.image("images/"+rows["image"])
