@@ -1,1 +1,1 @@
-
+This project is to create a Email News App.
