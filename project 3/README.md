@@ -1,1 +1,1 @@
-This project is to create a Email News App.
+The app accesses news articles topic and sends them by email.
