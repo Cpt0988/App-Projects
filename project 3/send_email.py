@@ -1,14 +1,14 @@
 import smtplib, ssl
-
+import os #hide app password with name
 
 def send_email(message):
     host = "smtp.gmail.com"
     port = 465
 
-    username = "myemail@gmail.com"
-    password = "YOUR_GMAIL_PASSWORD"
+    username = "cpt2948@gmail.com"
+    password = os.getenv("email app")
 
-    receiver = "app8flask@gmail.com"
+    receiver = "cpt2948@gmail.com"
     context = ssl.create_default_context()
 
     with smtplib.SMTP_SSL(host, port, context=context) as server:
@@ -16,4 +16,4 @@ def send_email(message):
         server.sendmail(username, receiver, message)
         
 
-send_email("Hello, how are you?")
+send_email("Hello, Here the news topics")
