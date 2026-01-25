@@ -1,5 +1,5 @@
 import smtplib, ssl
-import os #hide app password with name
+import os # hide password
 
 def send_email(message):
     host = "smtp.gmail.com"
@@ -16,4 +16,4 @@ def send_email(message):
         server.sendmail(username, receiver, message)
         
 
-send_email("Hello, Here the news topics")
+#send_email("Hello, Here the news topics")
