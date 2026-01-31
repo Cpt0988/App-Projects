@@ -8,8 +8,10 @@ def home():
 
 
 @app.route("/about/")
-def home():
-    return render_template("tutorial.html")
+def about():
+    return render_template("about.html")
+
+
 
 
 app.run(debug=True)
