@@ -1,0 +1,1 @@
+This app is a AI News Summarizer.
