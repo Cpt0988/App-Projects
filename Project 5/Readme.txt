@@ -1,0 +1,1 @@
+This project is crateing an AI agent using Gemini Model on local pc.
