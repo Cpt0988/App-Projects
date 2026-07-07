@@ -1,0 +1,1 @@
+This project is a Weather forecast dashboard.
